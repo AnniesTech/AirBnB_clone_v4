@@ -1,6 +1,60 @@
 # AirBnB Clone - The Console
 The console is the first segment of the AirBnB project at Holberton School that will collectively cover fundamental concepts of higher level programming. The goal of AirBnB project is to eventually deploy our server a simple copy of the AirBnB Website(HBnB). A command interpreter is created in this segment to manage objects for the AirBnB(HBnB) website.
 
+# AirBnB Clone: Phase # 4
+
+Web dynamic with JQuery
+
+## Description
+
+Project attempts to clone the the AirBnB application and website, including the
+database, storage, RESTful API, Web Framework, and Front End.  Currently the
+application is designed to run with 2 storage engine models:
+
+* File Storage Engine:
+
+  * `/models/engine/file_storage.py`
+
+* Database Storage Engine:
+
+  * `/models/engine/db_storage.py`
+
+  * To Setup the DataBase for testing and development, there are 2 setup
+  scripts that setup a database with certain privileges: `setup_mysql_test.sql`
+  & `setup_mysql_test.sql` (for more on setup, see below).
+
+  * The Database uses Environmental Variables for tests.  To execute tests with
+  the environmental variables prepend these declarations to the execution
+  command:
+
+```
+$ HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd \
+HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db HBNB_TYPE_STORAGE=db \
+[COMMAND HERE]
+```
+
+## Run the web_dynamic version
+
+To run this inside vagrant, add those two lines to the Vagrantfile:
+```
+config.vm.network :forwarded_port, guest: 5000, host: 5000
+config.vm.network :forwarded_port, guest: 5001, host: 5001
+```
+
+The API will run on port 5001 and the page will run on port 5000.
+
+In a first terminal inside the repo, run the API:
+```
+HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db HBNB_API_PORT=5001 python3 -m api.v1.app
+```
+
+In a second window inside the repo, run a page (for example 100-hbnb):
+```
+HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db HBNB_API_PORT=5000 python3 -m web_dynamic.100-hbnb
+```
+
+All the web dynamic Flask scripts, HTML templates and Javascript scripts are in the foler [web_dynamic](./web_dynamic).
+
 #### Functionalities of this command interpreter:
 * Create a new object (ex: a new User or a new Place)
 * Retrieve an object from a file, a database etc...
@@ -20,6 +74,18 @@ The console is the first segment of the AirBnB project at Holberton School that 
 
 ## Environment
 This project is interpreted/tested on Ubuntu 14.04 LTS using python3 (version 3.4.3)
+* __OS:__ Ubuntu 14.04 LTS
+* __language:__ Python 3.4.3
+* __web server:__ nginx/1.4.6
+* __application server:__ Flask 0.12.2, Jinja2 2.9.6
+* __web server gateway:__ gunicorn (version 19.7.1)
+* __database:__ mysql Ver 14.14 Distrib 5.7.18
+* __documentation:__ Swagger (flasgger==0.6.6)
+* __style:__
+  * __python:__ PEP 8 (v. 1.7.0)
+  * __web static:__ [W3C Validator](https://validator.w3.org/)
+  * __bash:__ ShellCheck 0.3.3
+  * __javascript__: semistandard
 
 ## Installation
 * Clone this repository: `git clone "https://github.com/alexaorrico/AirBnB_clone.git"`
@@ -158,7 +224,10 @@ Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twit
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)  
 Jhoan Zamora - [Github](https://github.com/jzamora5) / [Twitter](https://twitter.com/JhoanZamora10)  
 David Ovalle - [Github](https://github.com/Nukemenonai) / [Twitter](https://twitter.com/disartDave)
+Ana Rocha - [Github](https://github.com/AnniesTech) / [Twitter](https://twitter.com/BananasAnnie)
+Hernán Echeverri R - [Github](https://github.com/hedaecra) / [Twitter](https://twitter.com/HeDaEcRa)
 
 Second part of Airbnb: Joann Vuong
 ## License
 Public Domain. No copy write protection. 
+
