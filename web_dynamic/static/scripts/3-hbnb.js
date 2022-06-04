@@ -19,14 +19,14 @@ $(document).ready(function () {
     $('div.amenities > h4').text(output);
     myList = [];
   });
-  const url = 'http://localhost:5001/api/v1/status/';
-    $.get(url, function (response) {
-      if (response.status === 'OK') {
-        $('div#api_status').addClass('available');
-      } else {
-        $('div#api_status').removeClass('available');
-      }
-    });
+  const apiStatus = $('DIV#api_status');
+  $.ajax('http://0.0.0.0:5001/api/v1/status/').done(function (data) {
+    if (data.status === 'OK') {
+      apiStatus.addClass('available');
+    } else {
+      apiStatus.removeClass('available');
+    }
+  });
   const placesSearch = $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/places_search/',
     dataType: 'json',
